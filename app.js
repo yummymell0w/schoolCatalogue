@@ -28,16 +28,14 @@ class School {
     }
 
     static pickSubstituteTeacher(substituteTeachers) {
-        let randomTeacherIndex= Math.floor((substituteTeachers.length -1) * Math.random());
+        let randomTeacherIndex= Math.floor((substituteTeachers.length -1)  * Math.random());
         return substituteTeachers[randomTeacherIndex];
     }
 }
 
 class Primary extends School {
     constructor(name,numberOfStudents,pickupPolicy) {
-        super(name);
-        super('primary');
-        super(numberOfStudents);
+        super(name,'primary',numberOfStudents);
         this._pickupPolicy = pickupPolicy;
     }
 
@@ -48,18 +46,14 @@ class Primary extends School {
 
 class Middle extends School {
     constructor(name) {
-        super(name);
-        super('middle');
-        super(numberOfStudents);
+        super(name,'middle',this.numberOfStudents);
     }
 }
 
 class High extends School {
     constructor(name,numberOfStudents,sportsTeams) {
-        super(name);
-        super('high');
-        super(numberOfStudents);
-        this._sportsTeams = [];
+        super(name,'high',numberOfStudents);
+        this._sportsTeams = sportsTeams;
     }
 
     get sportsTeams() {
@@ -69,7 +63,8 @@ class High extends School {
 
 const lorraineHansbury = new Primary('Lorraine Hansbury',514,'Students must be picked up by a parent, guardian, or a family member over the age of 13.');
 lorraineHansbury.quickFacts();
-School.pickSubstituteTeacher(['Jamal Crawford', 'Lou Williams', 'J. R. Smith', 'James Harden', 'Jason Terry', 'Manu Ginobli']);
+
+console.log(School.pickSubstituteTeacher(['Jamal Crawford', 'Lou Williams', 'J. R. Smith', 'James Harden', 'Jason Terry', 'Manu Ginobli']));
 
 const alSmith = new High('Al E. Smith',415,['Baseball', 'Basketball', 'Volleyball', 'Track and Field']);
 console.log(alSmith.sportsTeams);
